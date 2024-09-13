@@ -1,6 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 import { QueryClient, useQuery } from "@tanstack/react-query";
-import { googleQuery } from "~/GoogleQuery";
+import { query } from "~/Query";
 
 const queryClient = new QueryClient();
 
@@ -12,12 +12,12 @@ export const meta: MetaFunction = () => {
 };
 
 export const clientLoader = async () => {
-  return await queryClient.ensureQueryData(googleQuery());
+  return await queryClient.ensureQueryData(query());
 }
 
 export default function Index() {
   const { data, isLoading } = useQuery({
-    ...googleQuery()
+    ...query()
   });
 
   if (isLoading) {

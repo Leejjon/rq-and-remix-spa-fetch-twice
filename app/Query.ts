@@ -1,4 +1,4 @@
-export const googleQuery = () => (
+export const query = () => (
     {
         queryKey: ["fetch"],
         queryFn: async () => {
