@@ -1,8 +1,7 @@
 import type { MetaFunction } from "@remix-run/node";
-import { QueryClient, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { query } from "~/Query";
-
-const queryClient = new QueryClient();
+import { queryClientSingleton } from "~/QueryClientSingleton";
 
 export const meta: MetaFunction = () => {
   return [
@@ -12,7 +11,7 @@ export const meta: MetaFunction = () => {
 };
 
 export const clientLoader = async () => {
-  return await queryClient.ensureQueryData(query());
+  return await queryClientSingleton.ensureQueryData(query());
 }
 
 export default function Index() {
